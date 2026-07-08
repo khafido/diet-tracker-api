@@ -35,6 +35,38 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
   res.status(201).json(preset);
 });
 
+router.put('/:id', async (req: Request, res: Response): Promise<void> => {
+  const { id } = req.params;
+
+  const existing = await db('food_presets').where({ id }).first();
+
+  if (!existing) {
+    res.status(404).json({ error: 'Preset not found' });
+    return;
+  }
+
+  if (existing.user_id !== req.userId) {
+    res.status(403).json({ error: 'Forbidden' });
+    return;
+  }
+
+  const { name, calories_per_100g, protein_per_100g, carbs_per_100g, fat_per_100g } = req.body;
+
+  const updates: Record<string, unknown> = {};
+  if (name !== undefined) updates.name = name;
+  if (calories_per_100g !== undefined) updates.calories_per_100g = calories_per_100g;
+  if (protein_per_100g !== undefined) updates.protein_per_100g = protein_per_100g;
+  if (carbs_per_100g !== undefined) updates.carbs_per_100g = carbs_per_100g;
+  if (fat_per_100g !== undefined) updates.fat_per_100g = fat_per_100g;
+
+  const [updated] = await db('food_presets')
+    .where({ id })
+    .update(updates)
+    .returning('*');
+
+  res.json(updated);
+});
+
 router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 
