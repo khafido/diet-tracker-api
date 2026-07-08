@@ -35,4 +35,24 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
   res.status(201).json(preset);
 });
 
+router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
+  const { id } = req.params;
+
+  const existing = await db('food_presets').where({ id }).first();
+
+  if (!existing) {
+    res.status(404).json({ error: 'Preset not found' });
+    return;
+  }
+
+  if (existing.user_id !== req.userId) {
+    res.status(403).json({ error: 'Forbidden' });
+    return;
+  }
+
+  await db('food_presets').where({ id }).del();
+
+  res.json({ success: true });
+});
+
 export default router;
