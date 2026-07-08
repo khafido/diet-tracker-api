@@ -9,6 +9,8 @@ import entriesRoutes from './routes/entries';
 import goalsRoutes from './routes/goals';
 import profileRoutes from './routes/profile';
 import presetsRoutes from './routes/presets';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDefinition from './swagger';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -30,6 +32,11 @@ app.use('/api/entries', entriesRoutes);
 app.use('/api/goals', goalsRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/presets', presetsRoutes);
+
+// if NODE_ENV is undefined, don't serve the docs (assume production)
+if (process.env.NODE_ENV !== undefined && process.env.NODE_ENV !== 'production') {
+  app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDefinition));
+}
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
