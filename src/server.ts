@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
+import cors from 'cors';
 import db from './db';
 import authRoutes from './routes/auth';
 import entriesRoutes from './routes/entries';
@@ -12,6 +13,7 @@ import presetsRoutes from './routes/presets';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/health', async (_req, res) => {
