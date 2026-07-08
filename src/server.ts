@@ -7,6 +7,7 @@ import authRoutes from './routes/auth';
 import entriesRoutes from './routes/entries';
 import goalsRoutes from './routes/goals';
 import profileRoutes from './routes/profile';
+import presetsRoutes from './routes/presets';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,6 +27,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/entries', entriesRoutes);
 app.use('/api/goals', goalsRoutes);
 app.use('/api/profile', profileRoutes);
+app.use('/api/presets', presetsRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
