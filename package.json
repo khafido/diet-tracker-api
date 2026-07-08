@@ -1,0 +1,31 @@
+{
+  "name": "diet-tracker-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "migrate:latest": "knex migrate:latest --knexfile knexfile.js",
+    "migrate:rollback": "knex migrate:rollback --knexfile knexfile.js",
+    "migrate:make": "knex migrate:make --knexfile knexfile.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "knex": "^3.3.0",
+    "pg": "^8.22.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.1.1",
+    "@types/pg": "^8.20.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3"
+  }
+}

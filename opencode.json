@@ -1,0 +1,8 @@
+{
+  "references": {
+    "project-prd": {
+      "path": "../docs/diet-tracker-prd.md",
+      "description": "Use this document to understand requirements, features, and goals for building."
+    }
+  }
+}
