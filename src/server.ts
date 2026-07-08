@@ -3,6 +3,8 @@ dotenv.config();
 
 import express from 'express';
 import db from './db';
+import authRoutes from './routes/auth';
+import { requireAuth } from './middleware/requireAuth';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +20,10 @@ app.get('/health', async (_req, res) => {
   }
 });
 
+app.use('/api/auth', authRoutes);
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+export default app;
