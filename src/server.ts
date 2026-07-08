@@ -5,6 +5,8 @@ import express from 'express';
 import db from './db';
 import authRoutes from './routes/auth';
 import entriesRoutes from './routes/entries';
+import goalsRoutes from './routes/goals';
+import profileRoutes from './routes/profile';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,6 +24,8 @@ app.get('/health', async (_req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/entries', entriesRoutes);
+app.use('/api/goals', goalsRoutes);
+app.use('/api/profile', profileRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
