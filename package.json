@@ -9,7 +9,8 @@
     "start": "node dist/server.js",
     "migrate:latest": "knex migrate:latest --knexfile knexfile.js",
     "migrate:rollback": "knex migrate:rollback --knexfile knexfile.js",
-    "migrate:make": "knex migrate:make --knexfile knexfile.js"
+    "migrate:make": "knex migrate:make --knexfile knexfile.js",
+    "seed:run": "knex seed:run --knexfile knexfile.js"
   },
   "keywords": [],
   "author": "",
