@@ -9,6 +9,7 @@ import entriesRoutes from './routes/entries';
 import goalsRoutes from './routes/goals';
 import profileRoutes from './routes/profile';
 import presetsRoutes from './routes/presets';
+import weightsRoutes from './routes/weights';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDefinition from './swagger';
 
@@ -32,6 +33,7 @@ app.use('/api/entries', entriesRoutes);
 app.use('/api/goals', goalsRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/presets', presetsRoutes);
+app.use('/api/weights', weightsRoutes);
 
 // if NODE_ENV is undefined, don't serve the docs (assume production)
 if (process.env.NODE_ENV !== undefined && process.env.NODE_ENV !== 'production') {
